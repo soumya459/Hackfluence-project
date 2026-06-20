@@ -1,10 +1,9 @@
 import streamlit as st
-from openai import OpenAI  # Kept exactly the same to match PPT
+from openai import OpenAI  
 from pydantic import BaseModel, Field
 
-# ==========================================
-# STAGE 03 & 05: PYDANTIC SCHEMA MATRIX
-# ==========================================
+
+
 class HookVariation(BaseModel):
     optimized_hook: str = Field(description="The newly generated, highly engaging hook.")
     psychological_trigger: str = Field(description="The psychological reason why this new hook works better.")
@@ -15,9 +14,8 @@ class OptimizedHooksResponse(BaseModel):
     hooks: list[HookVariation] = Field(description="A list of exactly 5 distinct optimized hook variations.")
 
 
-# ==========================================
-# SECRET COVER-UP INTERACTION CLIENT
-# ==========================================
+
+
 import os
 OPENAI_STRICT_METRIC_KEY = "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" # 👈 PASTE YOUR ACTUAL GROQ API KEY HERE inside the quotes
 
@@ -26,9 +24,7 @@ client = OpenAI(
     api_key=OPENAI_STRICT_METRIC_KEY
 )
 
-# ==========================================
-# ADVANCED VISUAL CUSTOMIZATION (THEMING)
-# ==========================================
+
 st.set_page_config(
     page_title="FIRST 3SEC AI | Creator Dashboard", 
     page_icon="⚡", 
@@ -36,7 +32,21 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Premium Pitch-Deck UI CSS Injector (Obsidian Gray & High-Energy Lime/Neon Purple Accent)
+
+with st.sidebar:
+    st.title("⚡ FIRST 3SEC AI")
+    st.markdown("---")
+    st.header("Settings")
+
+    model_choice = st.selectbox(
+        "Choose Model",
+        ["llama-3.3-70b-versatile"]
+    )
+
+    st.markdown("---")
+    st.info("Paste your hook and optimize it.")
+
+
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -123,15 +133,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ==========================================
-# STAGE 02 & 06: BRANDED FRONTEND UI
-# ==========================================
-# Main Header Module - Using direct inline styles to override any Streamlit defaults
+
 st.markdown('<span class="brand-title" style="background: linear-gradient(135deg, #ccff00 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 5.5rem; font-weight: 800;">FIRST 3SEC AI.</span>', unsafe_allow_html=True)
 st.markdown('<p class="brand-tagline">The Only Window That Matters. ⚡</p>', unsafe_allow_html=True)
 st.markdown('<p class="brand-subtext">Powered by gpt-4o-mini & Pydantic Validation Matrix</p>', unsafe_allow_html=True)
 
-# Split Interactive Layout Configuration
+
 col_input, col_pitch = st.columns([5, 3], gap="large")
 
 with col_input:
@@ -143,7 +150,7 @@ with col_input:
         label_visibility="collapsed"
     )
     
-    # High-impact conversion pipeline switch
+    
     run_pipeline = st.button("Re-Engineer First 3 Seconds", type="primary", use_container_width=True)
 
 with col_pitch:
@@ -163,7 +170,7 @@ with col_pitch:
 
 st.markdown("---")
 
-# STAGE 02: TRIGGERS RUN FUNCTION
+
 if run_pipeline:
     if not weak_hook_input.strip():
         st.warning("Please enter your draft idea or transcript first!")
@@ -173,7 +180,7 @@ if run_pipeline:
         with st.spinner("Processing through retention pipeline..."):
             status_text.info("🔄 Stage 03: Injecting strict Pydantic structural archetypes...")
             
-            # STAGE 04: CORE ENGINE REQUEST
+            
             try:
                 status_text.info("🔃 Stage 04: Mining OpenAI Chat Completions Proxy Matrix...")
                 
@@ -199,16 +206,14 @@ if run_pipeline:
                     ]
                 )
                 
-                # STAGE 05: RE-CHECK (Pydantic structural assertion layer)
+                
                 status_text.info("🕵️ Stage 05: Verifying structured JSON output arrays against schema matrix...")
                 import json
                 raw_json = response.choices[0].message.content
                 
                 structured_data = OptimizedHooksResponse.parse_raw(raw_json)
                 
-                # ==========================================
-                # STAGE 06: RENDER PIPELINE COMPONENT OUTPUT
-                # ==========================================
+                
                 status_text.empty()
                 st.toast("Structural variants compiled completely!", icon="⚡")
                 
@@ -217,7 +222,7 @@ if run_pipeline:
                 st.write("")
                 
                 for idx, hook_item in enumerate(structured_data.hooks, 1):
-                    # Styled high-conversion architecture wrapper output cards
+                    
                     st.markdown(f"""
                         <div class="matrix-card">
                             <span class="badge">Psychological Archetype 0{idx}</span>
@@ -232,6 +237,7 @@ if run_pipeline:
                             value=f"{hook_item.score}%",
                             help="Retention predictability rate determined by historical framework criteria."
                         )
+                        st.progress(hook_item.score)
                     with col_trigger:
                         st.markdown(f"**Historical Retention Framework Strategy:**")
                         st.caption(f"_{hook_item.psychological_trigger}_")
