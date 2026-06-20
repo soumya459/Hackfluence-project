@@ -4,6 +4,7 @@
  <p>This is a  AI Tool that turns raw script ideas into 5 distinct hooks using virality frameworks ,scores each hook's potential and provides dynamic performance advice .It is a dashboard for creator .Instead of just writing scripts ,FIRST 3SEC AI scores and re-engineers hooks using proven psychological copywriting archetypes and historical virality trend  </p>
 <p><h3> LINK</h3></p>
 <P><H5> LINK FOR OUR PROJECT:https://www.notion.so/Final-Code-384abbde805b806caa2cc93d26477ad3?source=copy_link</H5></P>
+
  <h3>KEY FEATURES </h3>
  
  <P> <H5> HYPER-FOCUSED,NOT A GENERALIST </H5> - FIRST 3SEC AI  learns automatically what works for specific niches in real time </P>
